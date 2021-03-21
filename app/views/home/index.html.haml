@@ -1,0 +1,4 @@
+- if logged_in?
+  = user_info['name']
+  = image_tag(user_info['image_url'])
+= link_to 'Discord', "/auth/discord", method: :post
