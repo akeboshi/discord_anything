@@ -1,4 +1,6 @@
 - if logged_in?
   = user_info['name']
   = image_tag(user_info['image_url'])
-= link_to 'Discord', "/auth/discord", method: :post
+  = link_to 'log out', logout_path, method: :post
+- else
+  = link_to 'Discord', "/auth/discord", method: :post

@@ -9,18 +9,19 @@ module UserStatus
       session[:user].present?
     end
 
-    def logged_in_with_discord(auth_hash)
-      pp auth_hash
-      user = {
-        discord_id: auth_hash[:uid],
-        name: auth_hash[:info][:name],
-        image_url: auth_hash[:info][:image]
-      }
-      session[:user] = user
+    def logged_out
+      session[:user] = nil
     end
 
     def user_info
       session[:user]
+    end
+
+    def logged_in_with_discord(auth_hash)
+      session[:user] = User.create_with(
+        name: auth_hash[:info][:name],
+        image_url: auth_hash[:info][:image]
+      ).find_or_create_by(discord_id: auth_hash[:uid])
     end
   end
 end
