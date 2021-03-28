@@ -1,0 +1,11 @@
+- form_for Omikuji.new do |f|
+  = f.label :name, "占い名"
+  = f.text_field :name  
+
+- @omikujis.each do |omikuji|
+  %tr
+    %td
+      = omikuji.name 
+    %td
+      = omikuji.user.name
+
