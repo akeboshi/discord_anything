@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_141851) do
+ActiveRecord::Schema.define(version: 2021_03_28_011631) do
+
+  create_table "omikujis", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_omikujis_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.integer "discord_id", default: 0, null: false
@@ -20,4 +28,5 @@ ActiveRecord::Schema.define(version: 2021_03_22_141851) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "omikujis", "users"
 end

@@ -1,6 +1,40 @@
+%nav.flex.items-center.justify-between.flex-wrap.bg-teal-500.p-6
+  .flex.items-center.flex-shrink-0.text-white.mr-6
+    %svg.fill-current.h-8.w-8.mr-2{:height => "54", :viewbox => "0 0 54 54", :width => "54", :xmlns => "http://www.w3.org/2000/svg"}
+      %path{:d => "M13.5 22.1c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05zM0 38.3c1.8-7.2 6.3-10.8 13.5-10.8 10.8 0 12.15 8.1 17.55 9.45 3.6.9 6.75-.45 9.45-4.05-1.8 7.2-6.3 10.8-13.5 10.8-10.8 0-12.15-8.1-17.55-9.45-3.6-.9-6.75.45-9.45 4.05z"}
+    %span.font-semibold.text-xl.tracking-tight あさくさ
+  .block.lg:hidden
+    %button.flex.items-center.px-3.py-2.border.rounded.text-teal-200.border-teal-400.hover:text-white.hover:border-white
+      %svg.fill-current.h-3.w-3{:viewbox => "0 0 20 20", :xmlns => "http://www.w3.org/2000/svg"}
+        %title Menu
+        %path{:d => "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"}
+  .w-full.block.flex-grow.lg:flex.lg:items-center.lg:w-auto
+    .text-sm.lg:flex-grow
+      %a.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white.mr-4{:href => "#responsive-header"}
+        神社
+      %a.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white.mr-4{:href => "#responsive-header"}
+        Examples
+      %a.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white{:href => "#responsive-header"}
+        Blog
+    %div
+      %div.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white
+        = user_info['name']
+      %img{class: "inline-block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-16 rounded-full", src: user_info['image_url']}
 - if logged_in?
   = user_info['name']
   = image_tag(user_info['image_url'])
   = link_to 'log out', logout_path, method: :post
 - else
   = link_to 'Discord', "/auth/discord", method: :post
+
+%div{class: "max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden"}
+  %div{class: "sm:flex sm:items-center px-6 py-4"}
+    %img{class: "block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-24 rounded-full", src: "https://randomuser.me/api/portraits/women/17.jpg"}
+    %div{class: "mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left"}
+      %p{class: "text-xl leading-tight"}
+        Erin Lindford
+      %p{class: "text-sm leading-tight text-gray-600"}
+        Customer Support Specialist
+      %div{class: "mt-4"}
+        %button{class: "text-purple-500 hover:text-white hover:bg-purple-500 border border-purple-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"}
+          Message
