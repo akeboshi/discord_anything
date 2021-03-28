@@ -4,12 +4,12 @@ class SessionsController < ApplicationController
 
   def logout
     logged_out
-    redirect_to root_path
+    redirect_to omikujis_path
   end
 
   def callback
     logged_in_with_discord(auth_hash)
-    redirect_to '/'
+    redirect_to omikujis_path
   end
 
   protected
