@@ -3,7 +3,7 @@
   .min-w-screen.min-h-full.bg-gray-100.flex.items-center.justify-center.font-sans.overflow-hidden
     .w-full{:class => "lg:w-3/4"}
       %img.mx-auto.h-60.mt-4{ src: 'https://japaclip.com/files/shrine-torii.png'}
-      - if logged_in?
+      - if logged_in_user.present?
         = form_with scope: :omikuji, local: true, class: "my-4 flex" do |f|
           = f.text_field :name, placeholder: '大吉', class: 'w-3/4 rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white'
           %button.px-8.rounded-r-lg.bg-yellow-400.text-gray-800.font-bold.p-4.uppercase.border-yellow-500.border-t.border-b.border-r{class: 'w-1/4'}
@@ -37,7 +37,7 @@
                     -# .w-4.mr-2.transform.hover:text-purple-500.hover:scale-110
                     -#   %svg{:fill => "none", :stroke => "currentColor", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
                     -#     %path{:d => "M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
-                    - if logged_in?
+                    - if logged_in_user.present?
                       .w-4.mr-2.transform.hover:text-purple-500.hover:scale-110
                         = link_to omikuji, method: :delete, data: { confirm: "#{omikuji.name} を削除しますか？" } do
                           %svg{:fill => "none", :stroke => "currentColor", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}

@@ -12,12 +12,12 @@
       %a.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white.mr-4{:href => omikujis_path}
         神社
     %div
-      - if logged_in?
+      - if logged_in_user.present?
         .inline-block.text-sm.px-4.py-2.leading-none.border.rounded.text-white.border-white.hover:border-transparent.hover:text-teal-500.hover:bg-white.mt-4.lg:mt-0
           = link_to 'Log Out', logout_path, method: :post
         %div.block.mt-4.lg:inline-block.lg:mt-0.text-teal-200.hover:text-white
-          = user_info['name'] 
-        %img{class: "inline-block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-10 rounded-full", src: user_info['image_url']}
+          = logged_in_user.name
+        %img{class: "inline-block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-10 rounded-full", src: logged_in_user.image_url}
       - else
         .inline-block.text-sm.px-4.py-2.leading-none.border.rounded.text-white.border-white.hover:border-transparent.hover:text-teal-500.hover:bg-white.mt-4.lg:mt-0
           = link_to 'Discord Login', "/auth/discord", method: :post
