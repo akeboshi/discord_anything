@@ -24,8 +24,12 @@ ActiveRecord::Schema.define(version: 2021_03_28_011631) do
     t.integer "discord_id", default: 0, null: false
     t.string "name", null: false
     t.text "image_url", null: false
+    t.string "token", null: false
+    t.string "refresh_token", null: false
+    t.integer "expires_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["discord_id"], name: "index_users_on_discord_id", unique: true
   end
 
   add_foreign_key "omikujis", "users"

@@ -3,11 +3,12 @@ class OmikujisController < ApplicationController
 
   def index
     @omikujis = Omikuji.all
+    pp logged_in_user.guilds if logged_in?
   end
 
   def create
     omikuji = Omikuji.new(omikuji_params)
-    omikuji.user_id = user_info['id']
+    omikuji.user = logged_in_user
     omikuji.save!
 
     redirect_to omikujis_path, notice: "#{omikuji.name} を作成しました！"
