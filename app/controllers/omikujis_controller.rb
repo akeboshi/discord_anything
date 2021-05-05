@@ -3,7 +3,6 @@ class OmikujisController < ApplicationController
 
   def index
     @omikujis = Omikuji.all
-    pp logged_in_user.guilds if logged_in?
   end
 
   def create
