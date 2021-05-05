@@ -13,8 +13,6 @@ class User < ApplicationRecord
   end
 
   def asakusa?
-    a = guilds.map(&:id).include? Constants::ASAKUSA_ID
-    pp a
-    a
+    guilds.map(&:id).include? Constants::ASAKUSA_ID
   end
 end
