@@ -7,10 +7,12 @@ class User < ApplicationRecord
   validates :image_url, presence: true
 
   def guilds
-    unless discord_id
-      raise "discord idがある状態で取得して下さい"
-    end
+    raise 'tokenがある状態で取得して下さい' unless token
 
-    servers(self)
+    servers(token)
+  end
+
+  def asakusa?
+    guilds.map(&:id).include? Constants::ASAKUSA_ID
   end
 end

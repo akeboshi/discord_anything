@@ -30,10 +30,13 @@ module UserStatus
       user.token = auth_hash[:credentials][:token]
       user.expires_at = auth_hash[:credentials][:expires_at]
       user.refresh_token = auth_hash[:credentials][:refresh_token]
+
+      return nil unless user.asakusa?
+
       user.save!
       session[:user] = user
 
-      refresh!
+      user
     end
 
     def refresh!
