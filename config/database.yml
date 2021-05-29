@@ -22,4 +22,9 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: oracle_enhanced
+  database: <%= ENV.fetch("ORACLE_DB") %>
+  username: <%= ENV.fetch("ORACLE_DB_USER") %>
+  password: <%= ENV.fetch("ORACLE_DB_PASSWORD") %>
+  timeout: 5000
+  encoding: utf8
