@@ -14,7 +14,7 @@ class OmikujisController < ApplicationController
   end
 
   def destroy
-    if logged_in_user == @omikuji.user
+    if logged_in_user != @omikuji.user
       redirect_to omikujis_path, alert: 'おみくじの削除に失敗しました'
       return
     end
