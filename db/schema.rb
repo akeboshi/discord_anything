@@ -10,23 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_28_011631) do
+ActiveRecord::Schema.define(version: 2021_06_06_015736) do
+
+  create_table "day_omikujis", force: :cascade do |t|
+    t.string "name"
+    t.integer "discord_id", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "omikujis", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "user_id", precision: 38
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_omikujis_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "discord_id", precision: 38, default: 0, null: false
+    t.integer "discord_id", default: 0, null: false
     t.string "name", null: false
     t.text "image_url", null: false
     t.string "token", null: false
     t.string "refresh_token", null: false
-    t.integer "expires_at", precision: 38, null: false
+    t.integer "expires_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["discord_id"], name: "index_users_on_discord_id", unique: true

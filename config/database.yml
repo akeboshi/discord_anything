@@ -23,8 +23,8 @@ test:
 production:
   <<: *default
   adapter: oracle_enhanced
-  database: <%= ENV.fetch("ORACLE_DB") %>
-  username: <%= ENV.fetch("ORACLE_DB_USER") %>
-  password: <%= ENV.fetch("ORACLE_DB_PASSWORD") %>
+  database: <%= ENV.fetch("ORACLE_DB", 'db') %>
+  username: <%= ENV.fetch("ORACLE_DB_USER", 'root') %>
+  password: <%= ENV.fetch("ORACLE_DB_PASSWORD", 'password') %>
   timeout: 5000
   encoding: utf8
