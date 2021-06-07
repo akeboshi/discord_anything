@@ -6,7 +6,7 @@ class Api::CustomResponsesController < ApplicationController
     end
 
     words = CustomResponse.all
-                          .filter { |r| r.params[:word].include?(key) }
+                          .filter { |r| params[:word].include?(r.key) }
                           .map(&:response)
     render json: { words: words }
   end
