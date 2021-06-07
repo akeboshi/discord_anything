@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   post 'logout', to: 'sessions#logout'
 
   resources :omikujis, only: %i[index create destroy]
+  resources :custom_responses, only: %i[index create destroy]
   namespace :api do
     get 'omikujis/random/:user_id' => 'omikujis#random'
+    get 'custom_responses/words' => 'custom_responses#words'
   end
 end

@@ -1,0 +1,43 @@
+
+.overflow-x-auto
+  .min-w-screen.min-h-full.bg-gray-100.flex.items-center.justify-center.font-sans.overflow-hidden
+    .w-full{:class => "lg:w-3/4"}
+      %img.mx-auto.h-60.mt-4{ src: 'https://japaclip.com/files/shrine-torii.png'}
+      - if logged_in_user.present?
+        = form_with scope: :custom_response, local: true, class: "my-4 flex" do |f|
+          = f.text_field :key, placeholder: '反応する言葉', required: true, class: 'w-3/4 rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white'
+          = f.text_field :response, placeholder: '返信内容', required: true, class: 'w-3/4 rounded-l-lg p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white'
+          %button.px-8.rounded-r-lg.bg-yellow-400.text-gray-800.font-bold.p-4.uppercase.border-yellow-500.border-t.border-b.border-r{class: 'w-1/4'}
+            自動返信を作成
+      .bg-white.shadow-md.rounded.my-6
+        %table.min-w-max.w-full.table-fixed
+          %thead
+            %tr.bg-gray-200.text-gray-600.uppercase.text-sm.leading-normal
+              %th.py-3.px-6.text-left{class: 'w-3/12'} 反応する言葉
+              %th.py-3.px-6.text-left{class: 'w-6/12'} 返信内容
+              %th.py-3.px-6.text-left{class: 'w-2/12'} ユーザ
+              %th.py-3.px-6.text-center{class: 'w-1/12'} 操作
+          %tbody.text-gray-600.text-sm.font-light
+            - @custom_responses.each do |custom_response|
+              %tr.border-b.border-gray-200.hover:bg-gray-100
+                %td.py-3.px-6.text-left
+                  .flex.items-center
+                    %span.font-medium
+                      = custom_response.key
+                %td.py-3.px-6.text-left
+                  .flex.items-center
+                    %span.font-medium
+                      = custom_response.response
+                %td.py-3.px-6.text-left
+                  .flex.items-center
+                    .mr-2
+                      %img.w-6.h-6.rounded-full{src: custom_response.user.image_url}/
+                    %span
+                      = custom_response.user.name
+                %td.py-3.px-6.text-center
+                  .flex.item-center.justify-center
+                    - if logged_in_user.present?
+                      .w-4.mr-2.transform.hover:text-purple-500.hover:scale-110
+                        = link_to custom_response, method: :delete, data: { confirm: "#{custom_response.key} を削除しますか？" } do
+                          %svg{:fill => "none", :stroke => "currentColor", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
+                            %path{:d => "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "2"}
