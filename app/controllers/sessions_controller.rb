@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
   def callback
     logged_in_with_discord(auth_hash)
-    redirect_to omikujis_path
+    redirect_to root_path
   end
 
   protected
