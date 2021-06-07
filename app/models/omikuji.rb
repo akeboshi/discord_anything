@@ -8,9 +8,8 @@ class Omikuji < ApplicationRecord
     day = DayOmikuji.find_by(discord_id: discord_id, updated_at: Time.zone.now.all_day)
     return day.name if day.present?
 
-    omikuji_day = DayOmikuji.find_or_initialize_by(discord_id: discord_id) do |od|
-      od.name = random.name
-    end
+    omikuji_day = DayOmikuji.find_or_initialize_by(discord_id: discord_id)
+    omikuji_day.name = random.name
     omikuji_day.save!
 
     omikuji_day.name
