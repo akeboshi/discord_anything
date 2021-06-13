@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_07_000153) do
+ActiveRecord::Schema.define(version: 2021_06_13_023211) do
 
   create_table "custom_responses", force: :cascade do |t|
     t.string "key", default: "", null: false
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_06_07_000153) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["key"], name: "index_custom_responses_on_key", unique: true
     t.index ["user_id"], name: "index_custom_responses_on_user_id"
   end
 
