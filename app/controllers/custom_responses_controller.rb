@@ -2,7 +2,7 @@ class CustomResponsesController < ApplicationController
   before_action :set_custom_response, only: :destroy
 
   def index
-    @custom_responses = CustomResponse.order(key: 'DESC').order(created_at: 'DESC')
+    @custom_responses = CustomResponse.order(key: 'ASC').order(created_at: 'DESC')
   end
 
   def create
