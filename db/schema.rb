@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_06_13_023211) do
   create_table "custom_responses", force: :cascade do |t|
     t.string "key", default: "", null: false
     t.text "response", default: "", null: false
-    t.integer "user_id", null: false
+    t.integer "user_id", precision: 38, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_custom_responses_on_user_id"
@@ -23,26 +23,26 @@ ActiveRecord::Schema.define(version: 2021_06_13_023211) do
 
   create_table "day_omikujis", force: :cascade do |t|
     t.string "name"
-    t.integer "discord_id", default: 0, null: false
+    t.integer "discord_id", precision: 38, default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "omikujis", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "user_id"
+    t.integer "user_id", precision: 38
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_omikujis_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "discord_id", default: 0, null: false
+    t.integer "discord_id", precision: 38, default: 0, null: false
     t.string "name", null: false
     t.text "image_url", null: false
     t.string "token", null: false
     t.string "refresh_token", null: false
-    t.integer "expires_at", null: false
+    t.integer "expires_at", precision: 38, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["discord_id"], name: "index_users_on_discord_id", unique: true
