@@ -7,7 +7,8 @@ class Api::CustomResponsesController < ApplicationController
 
     words = CustomResponse.all
                           .filter { |r| params[:word].include?(r.key) }
-                          .map(&:response)
+                          .group_by { |r| r.key }
+                          .map{ |_, r| r[rand(r.length)]}
     render json: { words: words }
   end
 end
